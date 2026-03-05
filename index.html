@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Carte interactive des villes</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<style>
+body{
+font-family: Arial;
+margin:0;
+padding:0;
+}
+
+h2{
+text-align:center;
+}
+
+#map{
+height:90vh;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Carte interactive des villes</h2>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+
+// création de la carte
+var franceBounds = [
+[41.0,-5.5],   // sud-ouest
+[51.5,9.5]     // nord-est
+];
+
+var map = L.map('map', {
+maxBounds: franceBounds,
+maxBoundsViscosity: 1.0
+}).setView([46.6,2.4],6);
+
+// fond de carte
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+attribution:'© OpenStreetMap'
+}).addTo(map);
+
+
+// liste des villes
+var villes = [
+
+["Chilly-Mazarin",48.7000,2.3167],
+["Évry-Courcouronnes",48.6328,2.4400],
+["Morsang-sur-Orge",48.6611,2.3450],
+["Clichy",48.9045,2.3055],
+["Aubervilliers",48.9145,2.3833],
+["Bobigny",48.9099,2.4386],
+["Bondy",48.9037,2.4827],
+["Neuilly-sur-Marne",48.8556,2.5308],
+["Noisy-le-Sec",48.8897,2.4522],
+["Saint-Ouen-sur-Seine",48.9112,2.3344],
+["Sevran",48.9360,2.5350],
+["Champigny-sur-Marne",48.8172,2.5150],
+["Choisy-le-Roi",48.7685,2.4108],
+["Valenton",48.7478,2.4603],
+["Villejuif",48.7939,2.3630],
+["Saint-Ouen-l'Aumône",49.0439,2.1069],
+["Sarcelles",48.9967,2.3789],
+["Saint-Pierre-des-Corps",47.3873,0.7275],
+["Saint-Jean-de-Braye",47.9125,1.9700],
+["Dieppe",49.9229,1.0781],
+["Montivilliers",49.5450,0.1875],
+["Bruay-la-Buissière",50.4833,2.5500],
+["Sedan",49.7019,4.9400],
+["Longwy",49.5217,5.7603],
+["Schiltigheim",48.6075,7.7494],
+["Bouguenais",47.1775,-1.6225],
+["Nantes",47.2184,-1.5536],
+["Trélazé",47.4461,-0.4656],
+["Lannion",48.7322,-3.4564],
+["Brest",48.3904,-4.4861],
+["Lorient",47.7486,-3.3666],
+["Tulle",45.2670,1.7722],
+["Guéret",46.1717,1.8717],
+["Marmande",44.5039,0.1658],
+["Hendaye",43.3581,-1.7744],
+["Cahors",44.4479,1.4442],
+["Fontaine",45.1919,5.6889],
+["Cournon-d'Auvergne",45.7428,3.1972],
+["Bron",45.7336,4.9097],
+["Allauch",43.3356,5.4828],
+["Gardanne",43.4547,5.4690],
+["Les Pennes-Mirabeau",43.4103,5.3086]
+
+];
+
+
+// ajout des marqueurs
+for(var i=0;i<villes.length;i++){
+
+var ville=villes[i];
+
+L.circleMarker([ville[1],ville[2]],{
+radius:8,
+fillColor:"#FC5F5F",
+color:"#FC5F5F",
+weight:1,
+opacity:1,
+fillOpacity:0.9
+})
+.addTo(map)
+.bindPopup("<b>"+ville[0]+"</b>");
+
+}
+
+</script>
+
+</body>
+</html>
